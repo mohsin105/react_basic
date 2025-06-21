@@ -1,6 +1,8 @@
 // import { useState } from 'react'
 
-import CartApp from "./cart/CartApp";
+import ExpertSelect from "./ExpertSelect"
+
+// import CartApp from "./cart/CartApp";
 
 
 // import './App.css'
@@ -14,7 +16,8 @@ function App() {
       <h1>My first react rendering</h1>
       {/* <FirstComponent name={name}/> */}
       {/* <PlayWithButton/> */}
-      <CartApp/>
+      {/* <CartApp/> */}
+      <ExpertSelect/>
     </>
   )
 }

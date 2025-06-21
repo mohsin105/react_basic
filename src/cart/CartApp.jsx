@@ -26,6 +26,11 @@ const CartApp=()=>{
     const DicreaseQuantity=(name)=>{
         setCart(cart.map((item)=>item.name===name? {...item,quantity:item.quantity-1} : item).filter((item)=> item.quantity>0));
     }
+
+    const RemoveItem=(name)=>{
+        setCart(cart.map((item)=>item.name!=name))
+    }
+    const totalPrice=cart.reduce((total,item)=>total+item.price*item.quantity,0)
     return(
         <div>
             {/* The form */}
@@ -52,23 +57,27 @@ const CartApp=()=>{
                 </div>
                 {cart.length>0 ? (
                     <div>
-                        {cart.map((item)=>(
-                            <div key={item.name}
-                            className="flex justify-around gap-2"> 
-                                <p>{item.name}</p>
-                                <p>{item.price}</p>
-                                <p>{item.price*item.quantity}</p>
-                                {/* buttons */}
-                                <div>
-                                    <button onClick={()=>DicreaseQuantity(item.name)}>-</button>
-                                    <span>{item.quantity}</span>
-                                    <button onClick={()=>IncreaseQuantity(item.name)}>+</button>
-                                    <button>Remove Item</button>
+                        <div>
+                            {cart.map((item)=>(
+                                <div key={item.name}
+                                className="flex justify-around gap-2"> 
+                                    <p>{item.name}</p>
+                                    <p>{item.price}</p>
+                                    <p>{item.price*item.quantity}</p>
+                                    {/* buttons */}
+                                    <div>
+                                        <button onClick={()=>DicreaseQuantity(item.name)}>-</button>
+                                        <span>{item.quantity}</span>
+                                        <button onClick={()=>IncreaseQuantity(item.name)}>+</button>
+                                        <button onClick={()=>RemoveItem(item.name)}>Remove Item</button>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
-
+                            ))}
+                        </div>
+                        <div>
+                            <h3>Total Price: {totalPrice}</h3>
+                        </div>
+                    </div>  
                 ):(
                     <div>Cart Empty</div>
                 )}
